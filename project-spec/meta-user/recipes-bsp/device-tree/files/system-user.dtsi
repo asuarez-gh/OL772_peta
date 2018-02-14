@@ -1,0 +1,34 @@
+/include/ "system-conf.dtsi"
+/ {
+     aliases {
+        serial0 = &uart0;
+        serial1 = &uart1;
+    };
+ 
+    chosen {
+        bootargs = "console=ttyPS0,115200 earlyprintk root=/dev/mmcblk0p2 rw rootwait earlycon";
+        linux,stdout-path = "serial0:115200n8";
+    };
+};
+
+&uart0 {
+	status = "okay";
+	interrupts = <0x0 0x1b 0x4>;
+	device_type = "serial";
+     port-number = <0x0>;
+};
+
+&uart1 {
+	status = "okay";
+	interrupts = <0x0 0x32 0x4>;
+	device_type = "serial";
+    port-number = <0x1>;
+};
+
+&gem0{
+    status = "okay";
+};
+ 
+ &amba_pl{
+    compatible = "xlnx,zynq";
+ };

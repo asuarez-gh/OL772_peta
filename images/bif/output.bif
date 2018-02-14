@@ -1,0 +1,6 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]/home/gh_eng/PetaWorkspace/OL772_peta/images/linux/zynq_fsbl.elf
+	[offset = 0x80000]/home/gh_eng/PetaWorkspace/OL772_peta/images/linux/u-boot.elf
+}
