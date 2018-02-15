@@ -3,6 +3,8 @@
      aliases {
         serial0 = &uart0;
         serial1 = &uart1;
+        ethernet0 = "/amba/ethernet@e000b000";
+        ethernet1 = "/amba/ethernet@e000c000";
     };
  
     chosen {
@@ -26,16 +28,27 @@
     port-number = <0x1>;
 };
 
+
 &gem0 {
     status = "okay";
     phy-handle = <&phy0>;
-    phy0: phy@0 {
-        reg = <0>;
-        compatible = "ti,dp83867", "ethernet-phy-ieee802.3-c22"; 
-        ti,rx-internal-delay = <0x8>; 
-        ti,tx-internal-delay = <0xa>; 
-        ti,fifo-depth = <0x01>; 
+    mdio {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        phy0: phy@0 {
+            reg = <0>;
+            compatible = "ti,dp83867", "ethernet-phy-ieee802.3-c22"; 
+            ti,rx-internal-delay = <0x8>; 
+            ti,tx-internal-delay = <0xa>; 
+            ti,fifo-depth = <0x01>; 
+            ti,rxctrl-strap-worka;
+        };
     };
+};
+
+
+&gem1{
+ status = "disabled";
 };
 
 
