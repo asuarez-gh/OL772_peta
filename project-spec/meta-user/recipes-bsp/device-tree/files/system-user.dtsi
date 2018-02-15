@@ -9,6 +9,16 @@
         bootargs = "console=ttyPS0,115200 earlyprintk root=/dev/mmcblk0p2 rw rootwait earlycon";
         linux,stdout-path = "serial0:115200n8";
     };
+    
+    phy0 {
+	    compatible = "ulpi-phy";
+	    #phy-cells = <0x0>;
+	    reg = <0xe0002000 0x1000>;
+	    view-port = <0x170>;
+	    drv-vbus;
+	    linux,phandle = <0x7>;
+	    phandle = <0x7>;
+    };
 };
 
 &uart0 {
@@ -25,10 +35,11 @@
     port-number = <0x1>;
 };
 
-&gem0{
+&gem0 {
     status = "okay";
 };
- 
- &amba_pl{
+
+
+&amba_pl{
     compatible = "xlnx,zynq";
  };
