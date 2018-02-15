@@ -10,15 +10,6 @@
         linux,stdout-path = "serial0:115200n8";
     };
     
-    phy0 {
-	    compatible = "ulpi-phy";
-	    #phy-cells = <0x0>;
-	    reg = <0xe0002000 0x1000>;
-	    view-port = <0x170>;
-	    drv-vbus;
-	    linux,phandle = <0x7>;
-	    phandle = <0x7>;
-    };
 };
 
 &uart0 {
@@ -37,6 +28,14 @@
 
 &gem0 {
     status = "okay";
+    phy-handle = <&phy0>;
+    phy0: phy@0 {
+        reg = <0>;
+        compatible = "ti,dp83867", "ethernet-phy-ieee802.3-c22"; 
+        ti,rx-internal-delay = <0x8>; 
+        ti,tx-internal-delay = <0xa>; 
+        ti,fifo-depth = <0x01>; 
+    };
 };
 
 
